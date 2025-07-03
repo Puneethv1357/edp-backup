@@ -6,17 +6,22 @@ import pandas as pd
 import altair as alt
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-# Background style
+# Background style (dark blue to sky blue)
 st.markdown("""
     <style>
         .stApp {
-            background: linear-gradient(to right, #blue , #cyan);
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* dark blue gradient */
+            background-attachment: fixed;
         }
         .centered-textarea textarea {
             margin: 0 auto;
             display: block;
             border-radius: 10px;
             font-size: 16px;
+            padding: 10px;
+        }
+        h1, h2, p, label {
+            color: white !important;
         }
     </style>
 """, unsafe_allow_html=True)
