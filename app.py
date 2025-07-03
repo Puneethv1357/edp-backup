@@ -3,7 +3,8 @@ import tensorflow as tf
 import numpy as np
 import pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
+import pandas as pd
+import altair as alt
 # -----------------------------
 # Load model and tokenizer
 # -----------------------------
@@ -35,32 +36,34 @@ if st.button("Predict Emotion"):
     if not tweet.strip():
         st.warning("Please enter a tweet!")
     else:
+        # Make prediction
         seq = tokenizer.texts_to_sequences([tweet])
         padded = pad_sequences(seq, maxlen=maxlen, padding="post", truncating="post")
         prediction = model.predict(padded)
         predicted_label = emotion_labels[np.argmax(prediction)]
         confidence = np.max(prediction)
 
+        # Show prediction
         st.success(f"Predicted Emotion: **{predicted_label}**")
         st.write(f"Confidence: `{confidence:.2f}`")
 
-import pandas as pd
-import altair as alt
+        # Plot bar chart with emotion names
+        import pandas as pd
+        import altair as alt
 
-# Create a DataFrame for prediction
-probs_df = pd.DataFrame({
-    "Emotion": emotion_labels,
-    "Confidence": prediction.flatten()
-})
+        probs_df = pd.DataFrame({
+            "Emotion": emotion_labels,
+            "Confidence": prediction.flatten()
+        })
 
-# Build labeled bar chart using Altair
-bar_chart = alt.Chart(probs_df).mark_bar().encode(
-    x=alt.X('Emotion', sort='-y'),
-    y='Confidence',
-    color=alt.value("#4e79a7")
-).properties(
-    title="Prediction Confidence",
-    width=500
-)
+        bar_chart = alt.Chart(probs_df).mark_bar().encode(
+            x=alt.X('Emotion', sort=None),
+            y='Confidence',
+            color=alt.value("#4e79a7")
+        ).properties(
+            title="Prediction Confidence",
+            width=500
+        )
 
-st.altair_chart(bar_chart, use_container_width=True)
+        st.altair_chart(bar_chart, use_container_width=True)
+
