@@ -45,14 +45,14 @@ maxlen = 50
 st.markdown("""
     <div style='text-align: center; padding-top: 10px;'>
         <h1 style='color:#4e79a7;'>Tweet Emotion Classifier 💬</h1>
-        <p>Type a tweet or review to find its emotion.</p>
+        <p style='color:#4e79a7;'>Type a tweet or review to find its emotion.</p>
     </div>
 """, unsafe_allow_html=True)
 
 # Input
 st.markdown("<div class='centered-textarea'>", unsafe_allow_html=True)
 tweet = st.text_area(
-    label="Your Tweet or Review:",
+    label="style='color:#4e79a7;'>Your Tweet or Review:",
     placeholder="e.g. I'm feeling great today!",
     height=140
 )
