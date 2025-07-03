@@ -44,7 +44,7 @@ if st.button("Predict Emotion"):
         st.success(f"Predicted Emotion: **{predicted_label}**")
         st.write(f"Confidence: `{confidence:.2f}`")
 
-      import pandas as pd
+import pandas as pd
 import altair as alt
 
 # Create a DataFrame for prediction
