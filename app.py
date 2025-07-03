@@ -10,7 +10,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 st.markdown("""
     <style>
         .stApp {
-            background: linear-gradient(to right, #f5f7de, #c3cfe2);
+            background: linear-gradient(to right, #black, #c3cfe2);
         }
         .centered-textarea textarea {
             margin: 0 auto;
